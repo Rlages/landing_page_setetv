@@ -746,38 +746,42 @@ export default function HeroNew() {
 
         /* ── Mobile ≤768px ─────────────────────────────────── */
         @media (max-width: 768px) {
-          /* Stack columns, laptop on top */
+          /* Stack columns, no gap (spacing handled by margin-bottom below) */
           .hero-content {
             flex-direction: column !important;
-            padding: 96px 22px 60px !important;
-            min-height: 100svh !important;
             align-items: center !important;
             justify-content: flex-start !important;
-            gap: 32px !important;
+            padding: 96px 22px 60px !important;
+            min-height: 100svh !important;
+            gap: 0 !important;
           }
 
-          /* Laptop: first, centered, flat (no 3-D) */
+          /* Laptop: in-flow first (order 0 < order 1), centred, flat */
           .laptop-stage {
-            order: -1 !important;
+            order: 0 !important;
             flex: none !important;
             width: 100% !important;
             max-width: 320px !important;
             margin: 0 auto !important;
+            margin-bottom: 24px !important;
             overflow: hidden !important;
             transform: none !important;
           }
           .laptop-body {
-            display: none !important;
+            transform: none !important;
+            animation: none !important;
+            filter: drop-shadow(0 20px 40px rgba(0,0,0,0.5)) !important;
+            width: 100% !important;
           }
 
-          /* Text: second, full-width, centered */
+          /* Text: strictly after the mockup */
           .hero-left {
             order: 1 !important;
             flex: none !important;
             max-width: 100% !important;
             width: 100% !important;
             text-align: center !important;
-            margin-top: 20px !important;
+            margin-top: 0 !important;
           }
           .hero-headline {
             font-size: clamp(2rem, 8vw, 2.8rem) !important;
