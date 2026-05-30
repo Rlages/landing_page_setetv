@@ -1,0 +1,44 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap");
+@import "tailwindcss";
+
+/* ─── Section helpers ─────────────────────────────────── */
+.section-dark  { background: #0a0a0a; color: #fff; }
+.section-white { background: #ffffff; color: #111; }
+.section-gray  { background: #f5f5f7; color: #111; }
+
+/* ─── Marquee animations ──────────────────────────────── */
+@keyframes marqueeLeft {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@keyframes marqueeRight {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
+}
+.marquee-left  { animation: marqueeLeft  28s linear infinite; }
+.marquee-right { animation: marqueeRight 28s linear infinite; }
+
+/* ─── Swiper team overrides ───────────────────────────── */
+.team-swiper { padding-bottom: 48px !important; }
+.team-swiper .swiper-pagination-bullet {
+  background: rgba(255,255,255,0.25);
+}
+.team-swiper .swiper-pagination-bullet-active {
+  background: #7B2FE0;
+}
+
+/* ─── Grid utility ────────────────────────────────────── */
+.grid { display: grid; }
+@media (min-width: 768px) {
+  .md\:grid-cols-2 { grid-template-columns: repeat(2,1fr); }
+  .md\:grid-cols-3 { grid-template-columns: repeat(3,1fr); }
+  .md\:grid-cols-4 { grid-template-columns: repeat(4,1fr); }
+  .hidden.md\:flex   { display: flex !important; }
+  .hidden.md\:block  { display: block !important; }
+}
+.hidden { display: none; }
+
+/* ─── Global resets ───────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: "Inter", system-ui, sans-serif; background: #0a0a0a; }
