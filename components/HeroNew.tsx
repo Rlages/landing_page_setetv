@@ -141,6 +141,7 @@ function MagicDock() {
 function PortalMock() {
   return (
     <div
+      className="portal-mock"
       style={{
         position: "absolute",
         inset: 0,
@@ -760,15 +761,13 @@ export default function HeroNew() {
             order: -1 !important;
             flex: none !important;
             width: 100% !important;
-            max-width: 340px !important;
+            max-width: 320px !important;
             margin: 0 auto !important;
+            overflow: hidden !important;
             transform: none !important;
           }
           .laptop-body {
-            transform: none !important;
-            animation: none !important;
-            filter: drop-shadow(0 20px 40px rgba(0,0,0,0.5)) !important;
-            width: 100% !important;
+            display: none !important;
           }
 
           /* Text: second, full-width, centered */
@@ -778,6 +777,7 @@ export default function HeroNew() {
             max-width: 100% !important;
             width: 100% !important;
             text-align: center !important;
+            margin-top: 20px !important;
           }
           .hero-headline {
             font-size: clamp(2rem, 8vw, 2.8rem) !important;
@@ -797,6 +797,11 @@ export default function HeroNew() {
             width: 100% !important;
             display: flex !important;
             justify-content: center !important;
+          }
+
+          /* Hide portal mock (AO VIVO / news) on mobile */
+          .portal-mock {
+            display: none !important;
           }
 
           /* Dock: centered */
