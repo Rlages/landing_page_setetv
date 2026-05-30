@@ -734,6 +734,15 @@ export default function HeroNew() {
         }
         @keyframes portalBlink { 50% { opacity: 0.3; } }
 
+        /* Mobile background image */
+        @media (max-width: 768px) {
+          #hero {
+            background-image: url('https://res.cloudinary.com/dnth1inmv/image/upload/v1780171344/Design_sem_nome_4_f1wrdx.png') !important;
+            background-size: cover !important;
+            background-position: center top !important;
+          }
+        }
+
         /* ── Mobile ≤768px ─────────────────────────────────── */
         @media (max-width: 768px) {
           /* Stack columns, laptop on top */
