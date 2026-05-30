@@ -177,14 +177,14 @@ export default function HeroNew() {
             <span style={{ display: "block", color: "#9B5DE5" }}>
               que{" "}
               <Typewriter
-                words={["conecta", "informa", "transforma"]}
+                words={["conecta", "inspira", "transforma"]}
                 speed={90}
                 deleteSpeed={55}
                 pauseTime={2000}
                 style={{ color: "#9B5DE5" }}
               />
             </span>
-            <span style={{ display: "block", color: "rgba(255,255,255,0.20)" }}>
+            <span style={{ display: "block", color: "#ffffff" }}>
               o Piauí.
             </span>
           </motion.h1>
@@ -326,41 +326,6 @@ export default function HeroNew() {
         </div>
       </div>
 
-      {/* Scroll hint */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 2.2 }}
-        style={{
-          position: "absolute",
-          bottom: 26,
-          left: "50%",
-          transform: "translateX(-50%)",
-          fontFamily: "Inter, system-ui, sans-serif",
-          fontSize: 10,
-          letterSpacing: "3px",
-          color: "rgba(255,255,255,0.38)",
-          fontWeight: 600,
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          gap: 8,
-          zIndex: 6,
-          textTransform: "uppercase",
-        }}
-      >
-        <span>SCROLL</span>
-        <motion.div
-          animate={{ scaleY: [1, 0.3, 1] }}
-          transition={{ duration: 1.8, repeat: Infinity }}
-          style={{
-            width: 1,
-            height: 34,
-            background: "linear-gradient(to bottom, rgba(255,255,255,0.38), transparent)",
-            transformOrigin: "top",
-          }}
-        />
-      </motion.div>
     </section>
   );
 }
