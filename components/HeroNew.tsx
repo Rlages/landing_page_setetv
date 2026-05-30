@@ -146,6 +146,7 @@ export default function HeroNew() {
 
       {/* Hero content */}
       <div
+        className="hero-content"
         style={{
           position: "relative",
           zIndex: 5,
@@ -157,10 +158,11 @@ export default function HeroNew() {
           minHeight: "100vh",
         }}
       >
-        <div style={{ maxWidth: 560 }}>
+        <div className="hero-left" style={{ maxWidth: 560 }}>
 
           {/* Headline */}
           <motion.h1
+            className="hero-headline"
             initial={{ opacity: 0, y: 32, filter: "blur(10px)" }}
             animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             transition={{ duration: 0.9, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
@@ -191,6 +193,7 @@ export default function HeroNew() {
 
           {/* Subtitle */}
           <motion.p
+            className="hero-sub"
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.4 }}
@@ -212,6 +215,7 @@ export default function HeroNew() {
 
           {/* CTA Buttons */}
           <motion.div
+            className="hero-cta"
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.55 }}
@@ -285,6 +289,7 @@ export default function HeroNew() {
 
           {/* Social Proof */}
           <motion.div
+            className="hero-social"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.85 }}
@@ -326,6 +331,53 @@ export default function HeroNew() {
         </div>
       </div>
 
+      <style>{`
+        @media (max-width: 768px) {
+          /* Layout: column, centered, svh height */
+          .hero-content {
+            flex-direction: column !important;
+            padding: 20px 22px 80px !important;
+            min-height: 100svh !important;
+            justify-content: center !important;
+            align-items: flex-start !important;
+          }
+
+          /* Left column: full width */
+          .hero-left {
+            max-width: 100% !important;
+            width: 100% !important;
+          }
+
+          /* Headline: larger clamp, tighter letter-spacing */
+          .hero-headline {
+            font-size: clamp(2.2rem, 9vw, 3.5rem) !important;
+            letter-spacing: -1px !important;
+          }
+
+          /* Subtitle: slightly smaller, full width */
+          .hero-sub {
+            font-size: 1rem !important;
+            max-width: 100% !important;
+          }
+
+          /* Buttons: stack vertically, full width */
+          .hero-cta {
+            flex-direction: column !important;
+          }
+          .hero-cta > button {
+            width: 100% !important;
+            display: flex !important;
+            justify-content: center !important;
+          }
+
+          /* Social proof: allow wrapping */
+          .hero-social {
+            flex-wrap: wrap !important;
+            gap: 12px !important;
+            align-items: center !important;
+          }
+        }
+      `}</style>
     </section>
   );
 }
