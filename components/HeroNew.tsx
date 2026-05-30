@@ -746,56 +746,46 @@ export default function HeroNew() {
 
         /* ── Mobile ≤768px ─────────────────────────────────── */
         @media (max-width: 768px) {
-          /* Stack columns, no gap (spacing handled by margin-bottom below) */
+          /* Hide mockup entirely */
+          .portal-mock  { display: none !important; }
+          .laptop-stage { display: none !important; }
+          .laptop-body  { display: none !important; }
+
+          /* Content: centred single column */
           .hero-content {
             flex-direction: column !important;
+            justify-content: center !important;
             align-items: center !important;
-            justify-content: flex-start !important;
-            padding: 96px 22px 60px !important;
             min-height: 100svh !important;
+            padding: 80px 24px 60px !important;
             gap: 0 !important;
           }
 
-          /* Laptop: in-flow first (order 0 < order 1), centred, flat */
-          .laptop-stage {
-            order: 0 !important;
-            flex: none !important;
+          /* Text column: full-width, centred */
+          .hero-left {
             width: 100% !important;
-            max-width: 320px !important;
-            margin: 0 auto !important;
-            margin-bottom: 24px !important;
-            overflow: hidden !important;
-            transform: none !important;
-          }
-          .laptop-body {
-            transform: none !important;
-            animation: none !important;
-            filter: drop-shadow(0 20px 40px rgba(0,0,0,0.5)) !important;
-            width: 100% !important;
+            max-width: 100% !important;
+            text-align: center !important;
           }
 
-          /* Text: strictly after the mockup */
-          .hero-left {
-            order: 1 !important;
-            flex: none !important;
-            max-width: 100% !important;
-            width: 100% !important;
-            text-align: center !important;
-            margin-top: 0 !important;
-          }
+          /* Headline */
           .hero-headline {
-            font-size: clamp(2rem, 8vw, 2.8rem) !important;
-            letter-spacing: -1px !important;
+            font-size: clamp(2.2rem, 9vw, 3rem) !important;
+            text-align: center !important;
           }
+
+          /* Subtitle */
           .hero-sub {
             font-size: 1rem !important;
+            text-align: center !important;
             max-width: 100% !important;
           }
 
-          /* Buttons: full-width column */
+          /* Buttons: stacked, full-width, centred */
           .hero-cta {
             flex-direction: column !important;
-            align-items: stretch !important;
+            width: 100% !important;
+            align-items: center !important;
           }
           .hero-cta > button {
             width: 100% !important;
@@ -803,17 +793,12 @@ export default function HeroNew() {
             justify-content: center !important;
           }
 
-          /* Hide portal mock (AO VIVO / news) on mobile */
-          .portal-mock {
-            display: none !important;
-          }
-
-          /* Dock: centered */
+          /* Dock: centred */
           .hero-dock {
             justify-content: center !important;
           }
 
-          /* Social proof: centered */
+          /* Social proof: centred */
           .hero-social {
             justify-content: center !important;
             flex-wrap: wrap !important;
