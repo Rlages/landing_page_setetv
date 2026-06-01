@@ -47,6 +47,7 @@ export default function MarqueeSection() {
       </p>
 
       <div
+        className="marquee-section-outer"
         style={{
           position: "relative",
           overflow: "hidden",
@@ -100,10 +101,27 @@ export default function MarqueeSection() {
           gap: 100px;
           width: max-content;
           animation: marqueeSectionScroll 34s linear infinite;
+          will-change: transform;
+          backface-visibility: hidden;
+          -webkit-backface-visibility: hidden;
         }
         @keyframes marqueeSectionScroll {
           from { transform: translateX(0); }
           to   { transform: translateX(-50%); }
+        }
+        @media (max-width: 768px) {
+          /* Narrower fade zone on mobile so edge logos aren't clipped */
+          .marquee-section-outer {
+            -webkit-mask-image: linear-gradient(to right, transparent, #000 5%, #000 95%, transparent) !important;
+            mask-image: linear-gradient(to right, transparent, #000 5%, #000 95%, transparent) !important;
+          }
+          .marquee-section-track {
+            gap: 32px;
+          }
+          .marquee-section-track img {
+            height: 32px !important;
+            flex-shrink: 0;
+          }
         }
       `}</style>
     </section>
