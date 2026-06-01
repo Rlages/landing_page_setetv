@@ -376,9 +376,10 @@ export default function HeroNew() {
         boxShadow: "0 8px 32px rgba(0,0,0,0.3)",
       }}
     >
-      {/* Left legibility overlay */}
+      {/* Left legibility overlay (desktop only) */}
       <div
         aria-hidden
+        className="hero-bg-overlay"
         style={{
           position: "absolute",
           inset: 0,
@@ -735,77 +736,108 @@ export default function HeroNew() {
         }
         @keyframes portalBlink { 50% { opacity: 0.3; } }
 
-        /* Mobile background image */
-        @media (max-width: 768px) {
-          #hero {
-            background-image: url('https://res.cloudinary.com/dnth1inmv/image/upload/v1780171344/Design_sem_nome_4_f1wrdx.png') !important;
-            background-size: cover !important;
-            background-position: center top !important;
-          }
-        }
-
         /* ── Mobile ≤768px ─────────────────────────────────── */
         @media (max-width: 768px) {
-          /* Hide mockup entirely */
+          /* Background: image at 100% width so laptop fills top naturally */
+          #hero {
+            background-color: #140428 !important;
+            background-image: url('https://res.cloudinary.com/dnth1inmv/image/upload/v1780171344/Design_sem_nome_4_f1wrdx.png') !important;
+            background-size: 100% auto !important;
+            background-position: top center !important;
+          }
+          /* Bottom-fade gradient — fades laptop into dark bg */
+          #hero::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            background: linear-gradient(to bottom, transparent 30%, rgba(20,4,40,0.45) 42%, rgba(20,4,40,0.78) 62%, #140428 96%);
+            pointer-events: none;
+          }
+
+          /* Hide desktop left overlay */
+          .hero-bg-overlay { display: none !important; }
+
+          /* Hide CSS laptop (bg image is the notebook) */
           .portal-mock  { display: none !important; }
           .laptop-stage { display: none !important; }
           .laptop-body  { display: none !important; }
 
-          /* Content: centred single column */
+          /* Content: column from top — h1 margin-top anchors text below the bg laptop */
           .hero-content {
             flex-direction: column !important;
-            justify-content: center !important;
             align-items: center !important;
+            justify-content: flex-start !important;
+            padding: 0 0 48px !important;
             min-height: 100svh !important;
-            padding: 80px 24px 60px !important;
             gap: 0 !important;
           }
-
-          /* Text column: full-width, centred */
           .hero-left {
             width: 100% !important;
             max-width: 100% !important;
             text-align: center !important;
           }
 
-          /* Headline */
+          /* Headline: margin-top positions text just below bg-image laptop */
           .hero-headline {
-            font-size: clamp(2.2rem, 9vw, 3rem) !important;
-            text-align: center !important;
+            font-size: 2rem !important;
+            letter-spacing: -1px !important;
+            line-height: 1.2 !important;
+            margin-top: 232px !important;
+            padding: 0 24px !important;
+            text-shadow: 0 2px 28px rgba(0,0,0,0.6) !important;
           }
 
           /* Subtitle */
           .hero-sub {
             font-size: 1rem !important;
-            text-align: center !important;
+            margin-top: 16px !important;
+            padding: 0 24px !important;
             max-width: 100% !important;
+            text-shadow: 0 1px 12px rgba(0,0,0,0.5) !important;
           }
 
-          /* Buttons: stacked, full-width, centred */
+          /* Buttons: full-width stacked, 56px tall */
           .hero-cta {
             flex-direction: column !important;
             width: 100% !important;
-            align-items: center !important;
+            gap: 12px !important;
+            margin-top: 28px !important;
+            padding: 0 24px !important;
+            align-items: stretch !important;
           }
           .hero-cta > button {
+            height: 56px !important;
+            font-size: 16px !important;
             width: 100% !important;
             display: flex !important;
             justify-content: center !important;
           }
 
-          /* Dock: centred */
+          /* Dock: centred pill, 30px icons */
           .hero-dock {
             justify-content: center !important;
+            margin-top: 20px !important;
+          }
+          .hero-dock div[aria-label] {
+            width: 30px !important;
+            height: 30px !important;
           }
 
-          /* Social proof: centred */
+          /* Social proof: vertical stack */
           .hero-social {
+            flex-direction: column !important;
+            align-items: center !important;
             justify-content: center !important;
             flex-wrap: wrap !important;
+            gap: 14px !important;
+            margin-top: 20px !important;
+            padding: 0 24px !important;
           }
           .hero-social p {
             text-align: center !important;
-            max-width: 240px !important;
+            font-size: 13px !important;
+            max-width: 280px !important;
           }
         }
       `}</style>
