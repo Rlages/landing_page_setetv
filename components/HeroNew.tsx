@@ -193,7 +193,7 @@ export default function HeroNew() {
               color: "#fff",
             }}
           >
-            <span style={{ display: "block" }}>Comunicação</span>
+            <span style={{ display: "block" }}>Comunicação</span>{" "}
             <span style={{ display: "block", color: "#9B5DE5" }}>
               que{" "}
               <Typewriter
@@ -203,7 +203,7 @@ export default function HeroNew() {
                 pauseTime={2000}
                 style={{ color: "#9B5DE5" }}
               />
-            </span>
+            </span>{" "}
             <span style={{ display: "block", color: "#ffffff" }}>o Piauí.</span>
           </motion.h1>
 
