@@ -43,7 +43,7 @@ export default function NavbarNew() {
         }}>
         <div style={{ maxWidth:1152, margin:"0 auto", padding:"0 48px", display:"flex", alignItems:"center", justifyContent:"space-between" }}>
           <button onClick={() => go("#hero")} style={{ background:"none", border:"none", cursor:"pointer", padding:0 }}>
-            <img src={LOGO} alt="SETE TV News" style={{ height:36, width:"auto", objectFit:"contain", display:"block" }}/>
+            <img src={LOGO} alt="SETE TV News" className="navbar-logo" style={{ height:36, width:"auto", objectFit:"contain", display:"block" }}/>
           </button>
 
           <div className="hidden md:flex" style={{ gap:32 }}>

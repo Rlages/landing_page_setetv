@@ -224,7 +224,7 @@ export default function HeroNew() {
             }}
           >
             TV Digital, Portal de Notícias, Podcast e Redes Sociais{" "}
-            <span style={{ color: "#9B5DE5", fontWeight: 400 }}>
+            <span className="hero-sub-em" style={{ color: "#9B5DE5", fontWeight: 400 }}>
               a plataforma completa de comunicação do Piauí.
             </span>
           </motion.p>
@@ -370,132 +370,10 @@ export default function HeroNew() {
           </motion.div>
         </div>
 
-        {/* ── Right: laptop mockup ───────────────────────────── */}
-        <div
-          className="laptop-stage"
-          style={{ flex: 1, position: "relative", minWidth: 0 }}
-        >
-          {/* Purple glow */}
-          <div
-            aria-hidden
-            style={{
-              position: "absolute",
-              width: "128%",
-              height: "128%",
-              left: "50%",
-              top: "44%",
-              transform: "translate(-50%, -50%)",
-              background:
-                "radial-gradient(ellipse at center, rgba(123,47,224,0.50), rgba(155,93,229,0.20) 40%, transparent 68%)",
-              filter: "blur(36px)",
-              zIndex: -1,
-              pointerEvents: "none",
-            }}
-          />
-
-          {/* MacBook body */}
-          <div className="laptop-body">
-            {/* Screen casing */}
-            <div
-              style={{
-                background: "linear-gradient(150deg,#2a2a30,#141417)",
-                borderRadius: "20px",
-                padding: "12px",
-                boxShadow:
-                  "inset 0 0 0 1px rgba(255,255,255,0.08), inset 0 2px 3px rgba(255,255,255,0.10)",
-                position: "relative",
-              }}
-            >
-              {/* Camera notch */}
-              <div
-                style={{
-                  position: "absolute",
-                  top: "12px",
-                  left: "50%",
-                  transform: "translateX(-50%)",
-                  width: "120px",
-                  height: "18px",
-                  background: "#141417",
-                  borderRadius: "0 0 12px 12px",
-                  zIndex: 3,
-                }}
-              >
-                <div
-                  style={{
-                    position: "absolute",
-                    top: "6px",
-                    left: "50%",
-                    transform: "translateX(-50%)",
-                    width: "6px",
-                    height: "6px",
-                    borderRadius: "50%",
-                    background: "#3a3a40",
-                    boxShadow: "0 0 0 1px rgba(255,255,255,0.06)",
-                  }}
-                />
-              </div>
-
-              {/* Screen viewport */}
-              <div
-                style={{
-                  position: "relative",
-                  borderRadius: "9px",
-                  overflow: "hidden",
-                  aspectRatio: "16 / 10.2",
-                  background: "#0a0a0d",
-                  boxShadow: "inset 0 0 0 1px rgba(0,0,0,0.6)",
-                }}
-              >
-              </div>
-            </div>
-
-            {/* Hinge / base */}
-            <div
-              style={{
-                position: "relative",
-                height: "16px",
-                width: "113%",
-                marginLeft: "-6.5%",
-                background:
-                  "linear-gradient(180deg,#34343a 0%,#26262b 18%,#1a1a1e 60%,#0e0e11 100%)",
-                borderRadius: "3px 3px 11px 11px",
-                boxShadow:
-                  "inset 0 2px 2px rgba(255,255,255,0.12), 0 4px 8px rgba(0,0,0,0.5)",
-                clipPath: "polygon(1.5% 0, 98.5% 0, 100% 100%, 0 100%)",
-              }}
-            >
-              <div
-                style={{
-                  position: "absolute",
-                  top: 0,
-                  left: "50%",
-                  transform: "translateX(-50%)",
-                  width: "13%",
-                  height: "6px",
-                  background: "#0c0c0f",
-                  borderRadius: "0 0 7px 7px",
-                  boxShadow: "inset 0 1px 2px rgba(0,0,0,0.8)",
-                }}
-              />
-            </div>
-          </div>
-        </div>
       </div>
 
       {/* ── Styles + keyframes ────────────────────────────────── */}
       <style>{`
-        /* Desktop laptop animation */
-        @keyframes heroFloat {
-          0%,100% { transform: perspective(2200px) rotateY(-13deg) rotateX(5deg) rotateZ(0.5deg) translateY(0); }
-          50%      { transform: perspective(2200px) rotateY(-12deg) rotateX(4deg) rotateZ(0.3deg) translateY(-14px); }
-        }
-        .laptop-body {
-          width: min(520px, 100%);
-          transform: perspective(2200px) rotateY(-13deg) rotateX(5deg) rotateZ(0.5deg);
-          animation: heroFloat 7s ease-in-out infinite;
-          filter: drop-shadow(0 60px 80px rgba(0,0,0,0.6));
-        }
-
         /* ── Mobile ≤768px ─────────────────────────────────── */
         @media (max-width: 768px) {
           /* Background: image at 100% width so laptop fills top naturally */
@@ -518,10 +396,6 @@ export default function HeroNew() {
           /* Hide desktop left overlay */
           .hero-bg-overlay { display: none !important; }
 
-          /* Hide CSS laptop (bg image is the notebook) */
-          .laptop-stage { display: none !important; }
-          .laptop-body  { display: none !important; }
-
           /* Content: column from top — h1 margin-top anchors text below the bg laptop */
           .hero-content {
             flex-direction: column !important;
@@ -537,14 +411,23 @@ export default function HeroNew() {
             text-align: center !important;
           }
 
-          /* Headline: margin-top positions text just below bg-image laptop */
+          /*
+           * Headline: margin-top pushes all content below the bg-image laptop.
+           * Image is 853×1844 px → displayed at 843px tall on a 390px screen
+           * (background-size: 100% auto). Laptop ≈ top 50% = ~421px + 32px gap = 453px
+           * → rounded up to 460px for a comfortable buffer.
+           */
           .hero-headline {
             font-size: 2rem !important;
             letter-spacing: -1px !important;
             line-height: 1.2 !important;
-            margin-top: 232px !important;
+            margin-top: 460px !important;
             padding: 0 24px !important;
             text-shadow: 0 2px 28px rgba(0,0,0,0.6) !important;
+          }
+          /* Force each headline span onto its own line */
+          .hero-headline span {
+            display: block !important;
           }
 
           /* Subtitle */
@@ -554,6 +437,11 @@ export default function HeroNew() {
             padding: 0 24px !important;
             max-width: 100% !important;
             text-shadow: 0 1px 12px rgba(0,0,0,0.5) !important;
+          }
+          /* Accent part of subtitle on its own line */
+          .hero-sub-em {
+            display: block !important;
+            margin-top: 2px !important;
           }
 
           /* Buttons: full-width stacked, 56px tall */
