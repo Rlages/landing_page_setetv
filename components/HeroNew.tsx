@@ -9,6 +9,9 @@ const BG_IMG =
 const DOCK_ICONS = [
   {
     label: "YouTube",
+    href: "https://www.youtube.com/@setetv.oficial",
+    target: "_blank" as const,
+    rel: "noopener noreferrer",
     svg: (
       <svg viewBox="0 0 24 24" width="100%" height="100%">
         <path
@@ -21,6 +24,9 @@ const DOCK_ICONS = [
   },
   {
     label: "Instagram",
+    href: "https://www.instagram.com/setetv.oficial",
+    target: "_blank" as const,
+    rel: "noopener noreferrer",
     svg: (
       <svg viewBox="0 0 24 24" fill="none" width="100%" height="100%">
         <defs>
@@ -39,6 +45,7 @@ const DOCK_ICONS = [
   },
   {
     label: "Equipe",
+    href: "#contato",
     svg: (
       <svg
         viewBox="0 0 24 24"
@@ -108,23 +115,30 @@ function MagicDock() {
       }}
     >
       {DOCK_ICONS.map((icon, i) => (
-        <div
+        <a
           key={i}
-          ref={(el) => { iconRefs.current[i] = el; }}
+          href={icon.href}
+          target={"target" in icon ? icon.target : undefined}
+          rel={"rel" in icon ? icon.rel : undefined}
           aria-label={icon.label}
-          style={{
-            width: BASE,
-            height: BASE,
-            flexShrink: 0,
-            display: "grid",
-            placeItems: "center",
-            transformOrigin: "center bottom",
-            transition: "transform .22s cubic-bezier(.2,1.4,.35,1)",
-            willChange: "transform",
-          }}
+          style={{ display: "contents", cursor: "pointer" }}
         >
-          {icon.svg}
-        </div>
+          <div
+            ref={(el) => { iconRefs.current[i] = el; }}
+            style={{
+              width: BASE,
+              height: BASE,
+              flexShrink: 0,
+              display: "grid",
+              placeItems: "center",
+              transformOrigin: "center bottom",
+              transition: "transform .22s cubic-bezier(.2,1.4,.35,1)",
+              willChange: "transform",
+            }}
+          >
+            {icon.svg}
+          </div>
+        </a>
       ))}
     </div>
   );
