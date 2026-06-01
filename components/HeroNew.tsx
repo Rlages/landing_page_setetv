@@ -418,16 +418,17 @@ export default function HeroNew() {
            * → rounded up to 460px for a comfortable buffer.
            */
           .hero-headline {
-            font-size: 2rem !important;
+            font-size: clamp(2rem, 8vw, 2.6rem) !important;
             letter-spacing: -1px !important;
             line-height: 1.2 !important;
+            text-align: center !important;
             margin-top: 460px !important;
             padding: 0 24px !important;
             text-shadow: 0 2px 28px rgba(0,0,0,0.6) !important;
           }
-          /* Force each headline span onto its own line */
+          /* Inline spans so headline flows naturally across lines */
           .hero-headline span {
-            display: block !important;
+            display: inline !important;
           }
 
           /* Subtitle */
