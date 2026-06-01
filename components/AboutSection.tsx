@@ -1,103 +1,47 @@
 "use client";
 import { useEffect, useRef } from "react";
 
-function TvIcon() {
-  return (
-    <svg
-      width="56"
-      height="56"
-      viewBox="0 0 56 56"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      aria-hidden="true"
-    >
-      <rect width="56" height="56" rx="14" fill="#9B5DE5" fillOpacity="0.18" />
-      <rect x="8" y="14" width="40" height="24" rx="4" fill="#9B5DE5" fillOpacity="0.45" />
-      <rect x="10" y="16" width="36" height="20" rx="3" fill="#0d0518" />
-      <polygon points="24,21 24,31 33,26" fill="rgba(155,93,229,0.9)" />
-      <rect x="21" y="38" width="14" height="2.5" rx="1.25" fill="rgba(155,93,229,0.6)" />
-      <rect x="16" y="40.5" width="24" height="2" rx="1" fill="rgba(155,93,229,0.35)" />
-    </svg>
-  );
-}
-
-function NewsIcon() {
-  return (
-    <svg
-      width="56"
-      height="56"
-      viewBox="0 0 56 56"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      aria-hidden="true"
-    >
-      <rect width="56" height="56" rx="14" fill="#d946ef" fillOpacity="0.13" />
-      <rect x="11" y="13" width="34" height="30" rx="4" fill="#9B5DE5" fillOpacity="0.38" />
-      <rect x="14" y="17" width="28" height="4" rx="2" fill="rgba(255,255,255,0.78)" />
-      <rect x="14" y="24" width="20" height="2.5" rx="1.25" fill="rgba(255,255,255,0.5)" />
-      <rect x="14" y="28.5" width="24" height="2.5" rx="1.25" fill="rgba(255,255,255,0.5)" />
-      <rect x="14" y="33" width="18" height="2.5" rx="1.25" fill="rgba(255,255,255,0.4)" />
-      <rect x="14" y="37" width="12" height="2" rx="1" fill="rgba(255,255,255,0.28)" />
-    </svg>
-  );
-}
-
-function PodcastIcon() {
-  return (
-    <svg
-      width="56"
-      height="56"
-      viewBox="0 0 56 56"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      aria-hidden="true"
-    >
-      <rect width="56" height="56" rx="14" fill="#c084fc" fillOpacity="0.13" />
-      <rect x="22" y="10" width="12" height="22" rx="6" fill="rgba(155,93,229,0.88)" />
-      <path
-        d="M15 30 Q15 42 28 42 Q41 42 41 30"
-        stroke="rgba(155,93,229,0.75)"
-        strokeWidth="2.5"
-        fill="none"
-        strokeLinecap="round"
-      />
-      <line
-        x1="28"
-        y1="42"
-        x2="28"
-        y2="47"
-        stroke="rgba(155,93,229,0.7)"
-        strokeWidth="2.5"
-        strokeLinecap="round"
-      />
-      <line
-        x1="21"
-        y1="47"
-        x2="35"
-        y2="47"
-        stroke="rgba(155,93,229,0.7)"
-        strokeWidth="2.5"
-        strokeLinecap="round"
-      />
-    </svg>
-  );
-}
+const ICON_STYLE: React.CSSProperties = {
+  width: "52px",
+  height: "52px",
+  borderRadius: "14px",
+  objectFit: "contain",
+  filter: "drop-shadow(0 4px 16px rgba(139, 92, 246, 0.35))",
+};
 
 const CARDS = [
   {
-    icon: <TvIcon />,
+    icon: (
+      <img
+        src="https://res.cloudinary.com/dnth1inmv/image/upload/v1780281333/0e4dabe3-b407-4b6e-9d59-ff05c650b5ac_hmwq0q.png"
+        alt="TV Digital"
+        style={ICON_STYLE}
+      />
+    ),
     tag: "@setetv.oficial",
     title: "TV Digital",
     desc: "Canal no YouTube com transmissões ao vivo, coberturas jornalísticas e conteúdo sob demanda.",
   },
   {
-    icon: <NewsIcon />,
+    icon: (
+      <img
+        src="https://res.cloudinary.com/dnth1inmv/image/upload/v1780281325/bf22711d-4d13-4107-bbf5-63d557b23cb0_eqg0ma.png"
+        alt="Portal de Notícias"
+        style={ICON_STYLE}
+      />
+    ),
     tag: "setetvnews.com.br",
     title: "Portal de Notícias",
     desc: "Site com alcance mundial — cobertura regional, nacional e internacional em tempo real.",
   },
   {
-    icon: <PodcastIcon />,
+    icon: (
+      <img
+        src="https://res.cloudinary.com/dnth1inmv/image/upload/v1780281314/beb2c698-183a-4ddd-a615-5947ac7df917_zd4lpz.png"
+        alt="Podcast 7Cast"
+        style={ICON_STYLE}
+      />
+    ),
     tag: "Conexão 7Cast",
     title: "Podcast 7Cast",
     desc: "Canal de podcast com debates, entrevistas e análises aprofundadas dos principais temas.",
@@ -273,8 +217,8 @@ export default function AboutSection() {
             >
               <div
                 style={{
-                  width: "56px",
-                  height: "56px",
+                  width: "52px",
+                  height: "52px",
                   display: "grid",
                   placeItems: "center",
                   flexShrink: 0,
