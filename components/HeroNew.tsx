@@ -64,13 +64,6 @@ const AVATARS = [
   { initials: "LM", bg: "linear-gradient(135deg,#c084fc,#d946ef)" },
 ];
 
-const SIDE_ITEMS = [
-  { cat: "Economia",  title: "Investimentos em tecnologia crescem 40% no PI",      grad: "linear-gradient(135deg,#7B2FE0,#9B5DE5)" },
-  { cat: "Esportes",  title: "Piauí FC avança para semifinal do campeonato",        grad: "linear-gradient(135deg,#d946ef,#7B2FE0)" },
-  { cat: "Cultura",   title: "Festival de música nordestina este fim de semana",    grad: "linear-gradient(135deg,#5b21b6,#c084fc)" },
-  { cat: "Saúde",     title: "Novas UBSs abertas no interior do estado",            grad: "linear-gradient(135deg,#9B5DE5,#d946ef)" },
-];
-
 /* ─── Magic Dock ─────────────────────────────────────────────── */
 function MagicDock() {
   const iconRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -133,229 +126,6 @@ function MagicDock() {
           {icon.svg}
         </div>
       ))}
-    </div>
-  );
-}
-
-/* ─── Portal mock (inside MacBook screen) ───────────────────── */
-function PortalMock() {
-  return (
-    <div
-      className="portal-mock"
-      style={{
-        position: "absolute",
-        inset: 0,
-        background: "#0c0710",
-        color: "#fff",
-        fontSize: "9px",
-        display: "flex",
-        flexDirection: "column",
-        textAlign: "left",
-      }}
-    >
-      {/* top bar */}
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          gap: "8px",
-          padding: "7px 11px",
-          borderBottom: "1px solid rgba(255,255,255,0.07)",
-          background: "#0a0510",
-        }}
-      >
-        <div
-          style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: "4px",
-            background: "#e11d48",
-            color: "#fff",
-            fontWeight: 800,
-            fontSize: "7px",
-            letterSpacing: "0.5px",
-            padding: "3px 6px",
-            borderRadius: "3px",
-          }}
-        >
-          <span className="portal-blink-dot" />
-          AO VIVO
-        </div>
-        <div style={{ fontWeight: 900, fontSize: "13px", letterSpacing: "-0.3px" }}>
-          SETE{" "}
-          <span
-            style={{
-              background: "linear-gradient(135deg,#c084fc,#d946ef)",
-              WebkitBackgroundClip: "text",
-              backgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              color: "transparent",
-            }}
-          >
-            TV
-          </span>
-        </div>
-        <div
-          style={{
-            marginLeft: "auto",
-            fontSize: "7.5px",
-            color: "rgba(255,255,255,0.45)",
-            fontWeight: 500,
-          }}
-        >
-          28 Mai. 2026
-        </div>
-      </div>
-
-      {/* categories */}
-      <div
-        style={{
-          display: "flex",
-          gap: "13px",
-          padding: "6px 11px",
-          fontSize: "7.5px",
-          fontWeight: 700,
-          letterSpacing: "0.6px",
-          color: "rgba(255,255,255,0.6)",
-          borderBottom: "1px solid rgba(255,255,255,0.06)",
-          textTransform: "uppercase",
-        }}
-      >
-        <span style={{ color: "#c084fc" }}>Destaque</span>
-        <span>Política</span>
-        <span>Economia</span>
-        <span>Esportes</span>
-      </div>
-
-      {/* body */}
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "1.7fr 1fr",
-          gap: "9px",
-          padding: "11px",
-          flex: 1,
-          overflow: "hidden",
-        }}
-      >
-        {/* featured */}
-        <div
-          style={{
-            position: "relative",
-            borderRadius: "7px",
-            overflow: "hidden",
-            background: "linear-gradient(135deg,#3b1764,#1a0b2e)",
-          }}
-        >
-          <div
-            style={{
-              position: "absolute",
-              inset: 0,
-              background:
-                "radial-gradient(circle at 70% 25%, rgba(217,70,239,0.5), transparent 55%), linear-gradient(135deg,#4c1d95,#7B2FE0 55%,#2a0d4a)",
-            }}
-          />
-          <div
-            style={{
-              position: "absolute",
-              top: "7px",
-              left: "7px",
-              background: "rgba(0,0,0,0.55)",
-              backdropFilter: "blur(4px)",
-              color: "#fff",
-              fontSize: "6.5px",
-              fontWeight: 800,
-              letterSpacing: "0.5px",
-              padding: "3px 6px",
-              borderRadius: "3px",
-              textTransform: "uppercase",
-              zIndex: 1,
-            }}
-          >
-            Política
-          </div>
-          <div
-            style={{
-              position: "absolute",
-              inset: 0,
-              background: "linear-gradient(to top, rgba(0,0,0,0.85) 12%, transparent 60%)",
-            }}
-          />
-          <div style={{ position: "absolute", left: "9px", right: "9px", bottom: "9px" }}>
-            <h3
-              style={{
-                fontSize: "11px",
-                fontWeight: 800,
-                lineHeight: 1.15,
-                letterSpacing: "-0.3px",
-              }}
-            >
-              Piauí anuncia investimento em infraestrutura digital
-            </h3>
-            <p
-              style={{
-                fontSize: "7.5px",
-                color: "rgba(255,255,255,0.7)",
-                marginTop: "4px",
-                lineHeight: 1.3,
-              }}
-            >
-              Secretaria confirma expansão de conectividade
-            </p>
-          </div>
-        </div>
-
-        {/* side */}
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "8px",
-            overflow: "hidden",
-          }}
-        >
-          {SIDE_ITEMS.map((item, idx) => (
-            <div
-              key={idx}
-              style={{ display: "flex", gap: "7px", alignItems: "flex-start", overflow: "hidden" }}
-            >
-              <div
-                style={{
-                  width: "34px",
-                  height: "26px",
-                  borderRadius: "4px",
-                  flexShrink: 0,
-                  background: item.grad,
-                }}
-              />
-              <div style={{ flex: 1, overflow: "hidden" }}>
-                <div
-                  style={{
-                    fontSize: "6px",
-                    fontWeight: 800,
-                    letterSpacing: "0.6px",
-                    color: "#c084fc",
-                    textTransform: "uppercase",
-                  }}
-                >
-                  {item.cat}
-                </div>
-                <div
-                  style={{
-                    fontSize: "8px",
-                    fontWeight: 600,
-                    lineHeight: 1.25,
-                    marginTop: "2px",
-                    color: "rgba(255,255,255,0.9)",
-                  }}
-                >
-                  {item.title}
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
     </div>
   );
 }
@@ -676,7 +446,6 @@ export default function HeroNew() {
                   boxShadow: "inset 0 0 0 1px rgba(0,0,0,0.6)",
                 }}
               >
-                <PortalMock />
               </div>
             </div>
 
@@ -727,15 +496,6 @@ export default function HeroNew() {
           filter: drop-shadow(0 60px 80px rgba(0,0,0,0.6));
         }
 
-        /* Portal blink dot */
-        .portal-blink-dot {
-          display: inline-block;
-          width: 4px; height: 4px;
-          border-radius: 50%; background: #fff;
-          animation: portalBlink 1.4s infinite;
-        }
-        @keyframes portalBlink { 50% { opacity: 0.3; } }
-
         /* ── Mobile ≤768px ─────────────────────────────────── */
         @media (max-width: 768px) {
           /* Background: image at 100% width so laptop fills top naturally */
@@ -759,7 +519,6 @@ export default function HeroNew() {
           .hero-bg-overlay { display: none !important; }
 
           /* Hide CSS laptop (bg image is the notebook) */
-          .portal-mock  { display: none !important; }
           .laptop-stage { display: none !important; }
           .laptop-body  { display: none !important; }
 
