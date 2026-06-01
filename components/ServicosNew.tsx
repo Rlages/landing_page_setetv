@@ -1,99 +1,276 @@
 "use client";
 import { motion } from "framer-motion";
-import { useRef, useState } from "react";
 
-const services = [
-  { num:"01", icon:"🎯", title:"Cobertura Jornalística Municipal",     desc:"Equipe em campo para cobertura completa dos acontecimentos da sua cidade com agilidade e precisão." },
-  { num:"02", icon:"📡", title:"Publicação no Portal de Notícias",     desc:"Conteúdos publicados no setetvnews.com.br com alcance mundial e atualização em tempo real." },
-  { num:"03", icon:"📬", title:"Assessoria de Comunicação",            desc:"Gestão estratégica da comunicação institucional com profissionalismo e consistência de marca." },
-  { num:"04", icon:"🎬", title:"Produção de Conteúdo Audiovisual",     desc:"Vídeos institucionais, reportagens e materiais de alto padrão para diversas plataformas." },
-  { num:"05", icon:"📡", title:"Transmissões ao Vivo",                 desc:"Cobertura em tempo real com transmissão simultânea no YouTube, Instagram e demais plataformas." },
-  { num:"06", icon:"📋", title:"Cobertura de Eventos Oficiais",        desc:"Presença jornalística profissional em solenidades, inaugurações e atos da administração pública." },
-  { num:"07", icon:"⭐", title:"Produção de Campanhas Institucionais", desc:"Campanhas digitais e audiovisuais completas para comunicação de ações governamentais." },
-  { num:"08", icon:"🔗", title:"Solução Integrada de Comunicação",     desc:"Pacote crossmídia: TV Digital + Portal + Podcast + Redes Sociais em uma única solução." },
+/* ─── Service data ───────────────────────────────────────────── */
+const SERVICES = [
+  {
+    title: "Cobertura Jornalística Municipal",
+    desc:  "Equipe em campo para cobertura completa dos acontecimentos da sua cidade com agilidade e precisão.",
+    grad:  "radial-gradient(circle at 30% 45%, rgba(123,47,224,0.40), transparent 65%)",
+    icon: (
+      <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+        <rect x="4" y="14" width="40" height="27" rx="6" stroke="rgba(155,93,229,0.85)" strokeWidth="2"/>
+        <circle cx="24" cy="27" r="8" stroke="rgba(155,93,229,0.85)" strokeWidth="2"/>
+        <circle cx="24" cy="27" r="3" fill="rgba(155,93,229,0.55)"/>
+        <path d="M16 14v-3a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3" stroke="rgba(155,93,229,0.85)" strokeWidth="2"/>
+        <circle cx="38" cy="20" r="2.5" fill="rgba(217,70,239,0.7)"/>
+      </svg>
+    ),
+  },
+  {
+    title: "Publicação no Portal de Notícias",
+    desc:  "Conteúdos publicados no setetvnews.com.br com alcance mundial e atualização em tempo real.",
+    grad:  "radial-gradient(circle at 68% 35%, rgba(155,93,229,0.38), transparent 65%)",
+    icon: (
+      <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+        <circle cx="24" cy="24" r="18" stroke="rgba(155,93,229,0.85)" strokeWidth="2"/>
+        <ellipse cx="24" cy="24" rx="8" ry="18" stroke="rgba(155,93,229,0.85)" strokeWidth="2"/>
+        <line x1="6" y1="24" x2="42" y2="24" stroke="rgba(155,93,229,0.85)" strokeWidth="2"/>
+        <line x1="11" y1="14" x2="37" y2="14" stroke="rgba(155,93,229,0.5)" strokeWidth="1.5"/>
+        <line x1="11" y1="34" x2="37" y2="34" stroke="rgba(155,93,229,0.5)" strokeWidth="1.5"/>
+      </svg>
+    ),
+  },
+  {
+    title: "Produção de Conteúdo para Redes Sociais",
+    desc:  "Criação de conteúdo estratégico para Instagram, YouTube e demais plataformas digitais.",
+    grad:  "radial-gradient(circle at 50% 48%, rgba(217,70,239,0.32), transparent 65%)",
+    icon: (
+      <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+        <circle cx="38" cy="10" r="5" fill="rgba(155,93,229,0.45)" stroke="rgba(155,93,229,0.85)" strokeWidth="2"/>
+        <circle cx="10" cy="24" r="5" fill="rgba(155,93,229,0.45)" stroke="rgba(155,93,229,0.85)" strokeWidth="2"/>
+        <circle cx="38" cy="38" r="5" fill="rgba(155,93,229,0.45)" stroke="rgba(155,93,229,0.85)" strokeWidth="2"/>
+        <line x1="15" y1="21" x2="33" y2="13" stroke="rgba(155,93,229,0.85)" strokeWidth="2"/>
+        <line x1="15" y1="27" x2="33" y2="35" stroke="rgba(155,93,229,0.85)" strokeWidth="2"/>
+      </svg>
+    ),
+  },
+  {
+    title: "Assessoria de Imprensa Digital",
+    desc:  "Gestão profissional da comunicação institucional com cobertura jornalística e presença digital.",
+    grad:  "radial-gradient(circle at 32% 52%, rgba(123,47,224,0.36), transparent 65%)",
+    icon: (
+      <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+        <path d="M8 18 L36 10 L36 38 L8 30 Z" stroke="rgba(155,93,229,0.85)" strokeWidth="2" fill="rgba(155,93,229,0.1)" strokeLinejoin="round"/>
+        <rect x="3" y="18" width="5" height="12" rx="2.5" fill="rgba(155,93,229,0.55)"/>
+        <path d="M8 30 L13 42" stroke="rgba(155,93,229,0.85)" strokeWidth="2" strokeLinecap="round"/>
+        <circle cx="40" cy="24" r="4" fill="rgba(217,70,239,0.4)" stroke="rgba(217,70,239,0.8)" strokeWidth="1.5"/>
+      </svg>
+    ),
+  },
+  {
+    title: "Transmissões ao Vivo",
+    desc:  "Cobertura em tempo real com transmissão simultânea no YouTube, Instagram e demais plataformas.",
+    grad:  "radial-gradient(circle at 65% 40%, rgba(192,132,252,0.35), transparent 65%)",
+    icon: (
+      <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+        <circle cx="24" cy="24" r="6" fill="rgba(217,70,239,0.65)"/>
+        <path d="M17 31 Q9 24 17 17" stroke="rgba(155,93,229,0.85)" strokeWidth="2.5" fill="none" strokeLinecap="round"/>
+        <path d="M31 31 Q39 24 31 17" stroke="rgba(155,93,229,0.85)" strokeWidth="2.5" fill="none" strokeLinecap="round"/>
+        <path d="M12 36 Q3 24 12 12" stroke="rgba(155,93,229,0.5)" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
+        <path d="M36 36 Q45 24 36 12" stroke="rgba(155,93,229,0.5)" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
+      </svg>
+    ),
+  },
+  {
+    title: "Cobertura de Eventos Oficiais",
+    desc:  "Presença jornalística profissional em solenidades, inaugurações e atos da administração pública.",
+    grad:  "radial-gradient(circle at 45% 38%, rgba(155,93,229,0.35), transparent 65%)",
+    icon: (
+      <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+        <rect x="6" y="10" width="36" height="32" rx="6" stroke="rgba(155,93,229,0.85)" strokeWidth="2"/>
+        <line x1="6" y1="20" x2="42" y2="20" stroke="rgba(155,93,229,0.85)" strokeWidth="2"/>
+        <line x1="16" y1="6" x2="16" y2="14" stroke="rgba(155,93,229,0.85)" strokeWidth="2" strokeLinecap="round"/>
+        <line x1="32" y1="6" x2="32" y2="14" stroke="rgba(155,93,229,0.85)" strokeWidth="2" strokeLinecap="round"/>
+        <circle cx="16" cy="31" r="2.5" fill="rgba(155,93,229,0.75)"/>
+        <circle cx="24" cy="31" r="2.5" fill="rgba(155,93,229,0.75)"/>
+        <circle cx="32" cy="31" r="2.5" fill="rgba(155,93,229,0.75)"/>
+      </svg>
+    ),
+  },
 ];
 
-function ServiceCard({ s, i }: { s:typeof services[0]; i:number }) {
-  const cardRef = useRef<HTMLDivElement>(null);
-  const [mouse, setMouse] = useState({ x:0, y:0 });
-  const [hov, setHov] = useState(false);
-
+/* ─── Card ───────────────────────────────────────────────────── */
+function ServiceCard({ s, i }: { s: typeof SERVICES[0]; i: number }) {
   return (
     <motion.div
-      initial={{ opacity:0, y:24 }}
-      whileInView={{ opacity:1, y:0 }}
-      viewport={{ once:true, margin:"-40px" }}
-      transition={{ duration:0.55, delay:i*0.05, ease:[0.22,1,0.36,1] }}>
-      <div ref={cardRef}
-        onMouseMove={e => { if(!cardRef.current) return; const r=cardRef.current.getBoundingClientRect(); setMouse({ x:e.clientX-r.left, y:e.clientY-r.top }); }}
-        onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
-        style={{ position:"relative", background:"#fff", border:"1px solid #e5e7eb",
-                 borderRadius:16, padding:"28px 28px 24px", display:"flex",
-                 flexDirection:"column", minHeight:200, overflow:"hidden",
-                 transition:"border-color .3s,box-shadow .3s", cursor:"default",
-                 ...(hov ? { border:"1px solid rgba(123,47,224,0.3)", boxShadow:"0 8px 32px rgba(123,47,224,0.1)" } : {}) }}>
-        {hov && (
-          <div style={{ position:"absolute", inset:0, pointerEvents:"none", zIndex:0,
-                        background:`radial-gradient(600px at ${mouse.x}px ${mouse.y}px,rgba(123,47,224,0.06),transparent 40%)` }}/>
-        )}
-        <div style={{ position:"relative", zIndex:1 }}>
-          <span style={{ fontSize:28, display:"block", marginBottom:16 }}>{s.icon}</span>
-          <span style={{ fontFamily:"Inter", fontSize:10, fontWeight:700, letterSpacing:"0.1em",
-                         color:"rgba(123,47,224,0.6)", textTransform:"uppercase", display:"block", marginBottom:8 }}>{s.num}</span>
-          <h3 style={{ fontFamily:"Inter", fontSize:15, fontWeight:700, letterSpacing:"-0.02em",
-                       color:"#111", lineHeight:1.35, marginBottom:10 }}>{s.title}</h3>
-          <p style={{ fontFamily:"Inter", fontSize:13, color:"#666", lineHeight:1.65, flexGrow:1 }}>{s.desc}</p>
-          <div style={{ display:"inline-flex", alignItems:"center", gap:6, marginTop:16,
-                        fontFamily:"Inter", fontSize:12, fontWeight:600,
-                        color:"#7B2FE0", cursor:"pointer", transition:"gap .2s" }}
-            onMouseOver={e => (e.currentTarget.style.gap="10px")}
-            onMouseOut={e => (e.currentTarget.style.gap="6px")}
-            onClick={() => document.querySelector("#contato")?.scrollIntoView({ behavior:"smooth" })}>
-            Saiba mais <span>→</span>
-          </div>
-        </div>
+      className="sv-card"
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-40px" }}
+      transition={{ duration: 0.55, delay: i * 0.07, ease: [0.22, 1, 0.36, 1] }}
+    >
+      {/* Placeholder image area */}
+      <div
+        style={{
+          height: "220px",
+          borderRadius: "12px",
+          background: `rgba(255,255,255,0.04)`,
+          backgroundImage: s.grad,
+          display: "grid",
+          placeItems: "center",
+          flexShrink: 0,
+        }}
+      >
+        {s.icon}
       </div>
+
+      {/* Text */}
+      <h3
+        style={{
+          fontFamily: "Inter, system-ui, sans-serif",
+          fontSize: "20px",
+          fontWeight: 700,
+          color: "#ffffff",
+          letterSpacing: "-0.3px",
+          lineHeight: 1.3,
+          marginTop: "20px",
+        }}
+      >
+        {s.title}
+      </h3>
+      <p
+        style={{
+          fontFamily: "Inter, system-ui, sans-serif",
+          fontSize: "14px",
+          color: "rgba(255,255,255,0.6)",
+          lineHeight: 1.6,
+          marginTop: "8px",
+        }}
+      >
+        {s.desc}
+      </p>
     </motion.div>
   );
 }
 
+/* ─── Section ────────────────────────────────────────────────── */
 export default function ServicosNew() {
   return (
-    <section id="servicos" className="section-white" style={{ padding:"100px 0" }}>
-      <div style={{ maxWidth:1200, margin:"0 auto", padding:"0 48px" }}>
-        <div className="grid md:grid-cols-2"
-          style={{ gap:48, marginBottom:64, alignItems:"flex-end" }}>
+    <section
+      id="servicos"
+      style={{
+        background: "#0a0a0a",
+        padding: "100px 0",
+        fontFamily: "Inter, system-ui, sans-serif",
+      }}
+    >
+      <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 48px" }}>
+
+        {/* ── Header ── */}
+        <div className="sv-header">
           <motion.div
-            initial={{ opacity:0, y:24 }}
-            whileInView={{ opacity:1, y:0 }}
-            viewport={{ once:true }}
-            transition={{ duration:0.7 }}>
-            <span style={{ fontFamily:"Inter", fontSize:11, fontWeight:600, letterSpacing:"0.12em",
-                           textTransform:"uppercase", color:"#7B2FE0", display:"block", marginBottom:16 }}>O Que Fazemos</span>
-            <h2 style={{ fontFamily:"Inter", fontWeight:900, letterSpacing:"-0.04em",
-                         fontSize:"clamp(2rem,4.5vw,3.5rem)", color:"#111", lineHeight:1.05 }}>
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.65 }}
+          >
+            <span
+              style={{
+                fontSize: "11px",
+                fontWeight: 700,
+                letterSpacing: "0.14em",
+                textTransform: "uppercase",
+                color: "#8B5CF6",
+                display: "block",
+                marginBottom: "16px",
+              }}
+            >
               Nossos Serviços
+            </span>
+            <h2
+              style={{
+                fontSize: "clamp(2rem, 4vw, 3rem)",
+                fontWeight: 800,
+                letterSpacing: "-0.04em",
+                lineHeight: 1.1,
+                color: "#ffffff",
+              }}
+            >
+              Soluções completas em comunicação
             </h2>
           </motion.div>
+
           <motion.p
-            initial={{ opacity:0, y:24 }}
-            whileInView={{ opacity:1, y:0 }}
-            viewport={{ once:true }}
-            transition={{ duration:0.7, delay:0.1 }}
-            style={{ fontFamily:"Inter", fontSize:15, color:"#555", lineHeight:1.7 }}>
-            Soluções completas em <strong style={{ color:"#111" }}>comunicação institucional, produção audiovisual e divulgação digital</strong> para prefeituras, câmaras municipais e órgãos públicos.
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.65, delay: 0.1 }}
+            style={{
+              fontSize: "15px",
+              color: "rgba(255,255,255,0.55)",
+              lineHeight: 1.7,
+              maxWidth: "480px",
+            }}
+          >
+            Comunicação institucional, produção audiovisual e divulgação digital para{" "}
+            <span style={{ color: "rgba(255,255,255,0.85)", fontWeight: 500 }}>
+              prefeituras, câmaras municipais e órgãos públicos
+            </span>{" "}
+            de todo o Piauí.
           </motion.p>
         </div>
 
-        <div className="grid md:grid-cols-2" style={{ gap:16 }}>
-          <div style={{ display:"flex", flexDirection:"column", gap:16 }}>
-            {services.slice(0,4).map((s,i) => <ServiceCard key={i} s={s} i={i} />)}
-          </div>
-          <div style={{ display:"flex", flexDirection:"column", gap:16 }}>
-            {services.slice(4).map((s,i) => <ServiceCard key={i} s={s} i={i+0.1} />)}
-          </div>
+        {/* ── Grid ── */}
+        <div className="sv-grid">
+          {SERVICES.map((s, i) => (
+            <ServiceCard key={i} s={s} i={i} />
+          ))}
         </div>
       </div>
+
+      <style>{`
+        /* Header: 2 columns on desktop */
+        .sv-header {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 48px;
+          align-items: flex-end;
+          margin-bottom: 64px;
+        }
+
+        /* Cards grid: 3 columns on desktop */
+        .sv-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 20px;
+        }
+
+        /* Card base */
+        .sv-card {
+          background: rgba(255,255,255,0.03);
+          border: 1px solid rgba(255,255,255,0.08);
+          border-radius: 16px;
+          padding: 24px;
+          display: flex;
+          flex-direction: column;
+          cursor: default;
+          transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .sv-card:hover {
+          border-color: rgba(139, 92, 246, 0.3);
+          transform: translateY(-4px);
+          box-shadow: 0 8px 32px rgba(139, 92, 246, 0.15);
+        }
+
+        /* Responsive */
+        @media (max-width: 980px) {
+          .sv-header {
+            grid-template-columns: 1fr;
+            gap: 24px;
+          }
+          .sv-grid {
+            grid-template-columns: repeat(2, 1fr);
+          }
+        }
+        @media (max-width: 600px) {
+          .sv-grid {
+            grid-template-columns: 1fr;
+          }
+          #servicos { padding: 64px 0 !important; }
+          #servicos > div { padding: 0 22px !important; }
+        }
+      `}</style>
     </section>
   );
 }
