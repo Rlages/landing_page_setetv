@@ -6,7 +6,7 @@ const LOGOS = [
     alt: "SETE TV News",
   },
   {
-    src: "https://res.cloudinary.com/dnth1inmv/image/upload/f_auto,q_auto/v1779833541/AGROSETE_LOGO_COLOR_okfgiv.png",
+    src: "https://res.cloudinary.com/dnth1inmv/image/upload/v1780281871/AGROSETE_LOGO_BRANCO_wzv6bi.png",
     alt: "AGROSETE",
   },
   {
